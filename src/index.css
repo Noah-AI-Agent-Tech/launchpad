@@ -1,0 +1,264 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* Single dark theme. `dark:` still compiles (shadcn components use it) and
+   always applies, because <html> carries the `dark` class. */
+@custom-variant dark (&:is(.dark *));
+
+/* ------------------------------------------------------------------ */
+/* Raw palette — named swatches.                                       */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-*: initial;
+
+  --color-white: hsl(0 0% 100%);
+  --color-ivory: hsl(40 18% 97%);
+  --color-nimbus: hsl(228 21.74% 95.49%);
+  --color-dove: hsl(222 19% 86%);
+  --color-pewter: hsl(213 12% 70%);
+  --color-fog: hsl(216 4% 51%);
+  --color-evenfall: hsl(214 16.1% 28%);
+  --color-steel: hsl(216 4% 22%);
+  --color-ash: hsl(216 5% 19%);
+  --color-ink: hsl(213 11% 16%);
+  --color-umbra: hsl(221 12% 14%);
+  --color-surface: hsl(0 0% 12.5%);
+  --color-charcoal: hsl(0 0% 10%);
+  --color-midnight: hsl(214 58.3% 9.4%);
+  --color-codeblock: hsl(0 0% 7%);
+  --color-jet: hsl(0 0% 4%);
+  --color-black: hsl(0 0% 0%);
+
+  /* accents */
+  --color-tide: hsl(190 100% 79%); /* logo cyan  #94EDFF */
+  --color-sand: hsl(36 93% 78%); /* logo peach #FBD191 */
+  --color-foam: hsl(147 33% 94%); /* logo mid   #E9F4EE */
+  --color-sunset: hsl(22 100% 51.6%);
+  --color-dawn: hsl(37 100% 76%);
+  --color-breeze: hsl(214 48.9% 73.9%);
+  --color-twilight: hsl(255 92% 76%);
+  --color-dusk: hsl(263 70% 50.4%);
+
+  /* ---------------------------------------------------------------- */
+  /* Typography                                                        */
+  /* ---------------------------------------------------------------- */
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial,
+    sans-serif;
+  --font-display: var(--font-sans);
+  --font-heading: var(--font-sans);
+  --font-mono:
+    "Geist Mono", ui-monospace, SFMono-Regular, "Roboto Mono", Menlo, Monaco,
+    "Liberation Mono", "DejaVu Sans Mono", "Courier New", monospace;
+
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.625rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.625;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.75rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2rem;
+  --text-2xl--letter-spacing: -0.025em;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 2.25rem;
+  --text-3xl--letter-spacing: -0.025em;
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: 1.1;
+  --text-4xl--letter-spacing: -0.025em;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 1.1;
+  --text-5xl--letter-spacing: -0.025em;
+  --text-6xl: 3.75rem;
+  --text-6xl--line-height: 1.1;
+  --text-6xl--letter-spacing: -0.025em;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+/* ------------------------------------------------------------------ */
+/* Semantic tokens (shadcn contract) — dark theme only.                */
+/* ------------------------------------------------------------------ */
+:root {
+  color-scheme: dark;
+  --radius: 0.5rem;
+
+  --background: var(--color-jet);
+  --foreground: var(--color-white);
+
+  --card: var(--color-charcoal);
+  --card-foreground: var(--color-white);
+  --popover: var(--color-charcoal);
+  --popover-foreground: var(--color-white);
+
+  --primary: var(--color-white);
+  --primary-foreground: var(--color-jet);
+  --primary-hover: var(--color-ivory);
+
+  --secondary: var(--color-surface);
+  --secondary-foreground: var(--color-white);
+
+  --muted: var(--color-surface);
+  --muted-foreground: hsl(0 0% 100% / 0.5);
+  --subtle-foreground: hsl(0 0% 100% / 0.4);
+
+  --accent: hsl(0 0% 100% / 0.06);
+  --accent-foreground: var(--color-white);
+
+  /* brand accent — pulled from the logo gradient */
+  --brand: var(--color-tide);
+  --brand-hover: var(--color-sand);
+  --brand-foreground: var(--color-jet);
+  --brand-gradient: linear-gradient(
+    45deg,
+    var(--color-tide),
+    var(--color-foam) 55%,
+    var(--color-sand)
+  );
+
+  --destructive: hsl(0 72% 65%);
+  --success: hsl(142 69% 58%);
+  --warning: hsl(45 93% 58%);
+  --info: var(--color-breeze);
+
+  --border: var(--color-umbra);
+  --input: hsl(0 0% 100% / 0.15);
+  --ring: var(--color-breeze);
+
+  --chart-1: var(--color-tide);
+  --chart-2: var(--color-sand);
+  --chart-3: var(--color-twilight);
+  --chart-4: var(--success);
+  --chart-5: var(--warning);
+
+  --sidebar: var(--color-charcoal);
+  --sidebar-foreground: var(--color-white);
+  --sidebar-primary: var(--color-white);
+  --sidebar-primary-foreground: var(--color-jet);
+  --sidebar-accent: hsl(0 0% 100% / 0.06);
+  --sidebar-accent-foreground: var(--color-white);
+  --sidebar-border: var(--color-umbra);
+  --sidebar-ring: var(--color-breeze);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-foreground: var(--brand-foreground);
+  --background-image-brand-gradient: var(--brand-gradient);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-balance;
+  }
+  h1 {
+    @apply text-4xl font-medium sm:text-5xl lg:text-6xl;
+  }
+  h2 {
+    @apply text-2xl font-normal sm:text-3xl;
+  }
+  h3 {
+    @apply text-2xl font-normal;
+  }
+  h4 {
+    @apply text-sm font-semibold;
+  }
+
+  code,
+  kbd,
+  pre {
+    @apply font-mono text-sm;
+  }
+
+  ::selection {
+    @apply bg-brand/30;
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Toast countdown bar (components/ui/toast.tsx): drains left to right. */
+@keyframes toast-countdown {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
